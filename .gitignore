@@ -1,2 +1,4 @@
 packages/
 prjToDo/bin/
+prjToDo/obj/
+prjToDo/App_Data/
