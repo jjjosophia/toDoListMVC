@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using prjToDo.Models;
+using prjToDo.Models.Shared;
 
 namespace prjToDo.Controllers
 {
@@ -30,6 +31,8 @@ namespace prjToDo.Controllers
             todo.fDate = fDate;
             db.tToDo.Add(todo);
             db.SaveChanges();
+            //log
+            LogHelper.WriteLog("save new todo data success");
             return RedirectToAction("Index");
         }
         public ActionResult Delete(int id)
@@ -42,8 +45,12 @@ namespace prjToDo.Controllers
             done.fDate = todo.fDate;
             done.fDeleDate = DateTime.Now;
 
-            db.tDone.Add(done); // 存到完成
+            db.tDone.Add(done);
+            //log
+            LogHelper.WriteLog($"add past todo data fid:{todo.fId}");
             db.tToDo.Remove(todo);
+            //log
+            LogHelper.WriteLog($"delete todo data fid:{todo.fId}");
             db.SaveChanges();
             return RedirectToAction("Index");
         }

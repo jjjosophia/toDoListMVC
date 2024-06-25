@@ -135,6 +135,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dbTDoModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Shared\LogHelper.cs" />
     <Compile Include="Models\tDone.cs">
       <DependentUpon>dbTDoModel.tt</DependentUpon>
     </Compile>
