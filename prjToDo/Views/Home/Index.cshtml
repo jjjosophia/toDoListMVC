@@ -7,13 +7,13 @@
 <h2>待辦事項</h2>
 
 <p>
-    @Html.ActionLink("待辦事項新增", "Create")
+    @Html.ActionLink("新增待辦事項", "Create")
+</p>
+<p>
+    @Html.ActionLink("歷史待辦事項", "Log")
 </p>
 <table class="table">
     <tr>
-        <th>
-            編號
-        </th>
         <th>
             標題
         </th>
@@ -21,29 +21,30 @@
             重要層級
         </th>
         <th>
-            結案日期
+            預計結案日期
         </th>
+       
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @item.fId
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.fTitle)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.fLevel)
-    </td>
-    <td>       
-        @DateTime.Parse(item.fDate.ToString()).ToShortDateString()
-    </td>
-    <td>       
-        @Html.ActionLink("Delete", "Delete", new { id = item.fId },new { onclick = "return confirm('確定刪除嗎?')", @class="btn btn-danger" })
-    </td>
-</tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>          
+            <td>
+                @Html.DisplayFor(modelItem => item.fTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fLevel)
+            </td>
+            <td>
+                @DateTime.Parse(item.fDate.ToString()).ToShortDateString()
+            </td>
+            <td>
+                @Html.ActionLink("已完成", "Delete", new { id = item.fId }, new { onclick = "return confirm('確定完成嗎?')", @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
 
 </table>
+
+

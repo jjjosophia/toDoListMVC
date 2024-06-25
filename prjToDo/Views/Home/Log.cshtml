@@ -1,0 +1,43 @@
+﻿@model IEnumerable<prjToDo.Models.tDone>
+
+@{
+    ViewBag.Title = "歷史待辦事項";
+}
+
+<h2>歷史待辦事項</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            標題
+        </th>
+        <th>
+            重要層級
+        </th>
+        <th>
+            預計結案日期
+        </th>
+        <th>
+            實際完成日期
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.fTitle)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.fLevel)
+    </td>
+    <td>
+        @DateTime.Parse(item.fDate.ToString()).ToShortDateString()
+    </td>
+    <td>
+        @DateTime.Parse(item.fDeleDate.ToString()).ToShortDateString()
+    </td>
+</tr>
+}
+
+</table>

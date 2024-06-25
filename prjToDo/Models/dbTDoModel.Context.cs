@@ -26,5 +26,6 @@ namespace prjToDo.Models
         }
     
         public virtual DbSet<tToDo> tToDo { get; set; }
+        public virtual DbSet<tDone> tDone { get; set; }
     }
 }

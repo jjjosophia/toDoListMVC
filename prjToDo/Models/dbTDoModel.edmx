@@ -4,7 +4,18 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="dbToDoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="dbToDoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tDone">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fId" Type="int" Nullable="false" />
+          <Property Name="fTitle" Type="nvarchar" MaxLength="50" />
+          <Property Name="fLevel" Type="nvarchar" MaxLength="50" />
+          <Property Name="fDate" Type="date" />
+          <Property Name="fDeleDate" Type="date" />
+        </EntityType>
         <EntityType Name="tToDo">
           <Key>
             <PropertyRef Name="fId" />
@@ -15,10 +26,10 @@
           <Property Name="fDate" Type="date" />
         </EntityType>
         <EntityContainer Name="dbToDoModelStoreContainer">
+          <EntitySet Name="tDone" EntityType="Self.tDone" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tToDo" EntityType="Self.tToDo" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="dbToDoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -33,7 +44,19 @@
         </EntityType>
         <EntityContainer Name="dbToDoEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="tToDo" EntityType="Self.tToDo" />
+          <EntitySet Name="tDone" EntityType="dbToDoModel.tDone" />
         </EntityContainer>
+        <EntityType Name="tDone">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fId" Type="Int32" Nullable="false" />
+          <Property Name="fTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fLevel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fDate" Type="DateTime" Precision="0" />
+          <Property Name="fDeleDate" Type="DateTime" Precision="0" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -47,6 +70,18 @@
                 <ScalarProperty Name="fTitle" ColumnName="fTitle" />
                 <ScalarProperty Name="fLevel" ColumnName="fLevel" />
                 <ScalarProperty Name="fDate" ColumnName="fDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tDone">
+            <EntityTypeMapping TypeName="dbToDoModel.tDone">
+              <MappingFragment StoreEntitySet="tDone">
+                <ScalarProperty Name="fDeleDate" ColumnName="fDeleDate" />
+                <ScalarProperty Name="fDate" ColumnName="fDate" />
+                <ScalarProperty Name="fLevel" ColumnName="fLevel" />
+                <ScalarProperty Name="fTitle" ColumnName="fTitle" />
+                <ScalarProperty Name="fId" ColumnName="fId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

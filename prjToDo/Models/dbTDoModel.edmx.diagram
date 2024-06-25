@@ -6,6 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="22ae43978b734ea7b662aac3483f6b9e" Name="Diagram1">
         <EntityTypeShape EntityType="dbToDoModel.tToDo" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbToDoModel.tDone" Width="1.5" PointX="0.75" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
